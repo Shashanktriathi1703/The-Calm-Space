@@ -1,0 +1,263 @@
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  color: var(--heading);
+}
+
+p {
+  margin: 0 0 1em;
+  color: var(--ink-soft);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.btn-primary {
+  background: var(--clay);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--clay-deep);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--heading);
+  border-color: var(--heading);
+}
+.btn-secondary:hover {
+  background: var(--deep);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+section {
+  padding: 96px 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 64px 0;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Entrance animation for hero elements, staggered via --d */
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll-triggered reveal, used via the <Reveal> component */
+.reveal-block {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+.reveal-block.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-block {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Shared ambient-motion keyframes, reused by every page illustration
+   (hero, about, workshops, contact, booking) */
+@keyframes illusFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes illusPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes illusSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-illustration * {
+    animation: none !important;
+  }
+}
+
+/* Brand logo — the circular badge artwork, cropped tight to the ring so it
+   reads as a clean coin/seal with no visible canvas edges, sized up for
+   real presence in the header. Used in Navbar and Footer. */
+.logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 3px 14px rgba(36, 72, 76, 0.28), 0 0 0 1px rgba(36, 72, 76, 0.06);
+  transition: transform 0.25s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.nav-brand:hover .logo-badge {
+  transform: scale(1.05);
+}
+
+.logo-badge img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 112%;
+  height: 112%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.logo-wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--heading);
+  white-space: nowrap;
+}
+
+.logo-wordmark-light {
+  color: var(--white);
+}

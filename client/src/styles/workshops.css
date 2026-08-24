@@ -1,0 +1,134 @@
+.workshops-hero {
+  padding-top: 96px;
+  background: var(--stone-soft);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.workshops-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.workshops-hero h1 {
+  font-size: clamp(32px, 4.6vw, 46px);
+  max-width: 560px;
+}
+
+.workshops-sub {
+  font-size: 18px;
+  max-width: 520px;
+}
+
+.workshops-hero-visual svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px) {
+  .workshops-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .workshops-hero-visual {
+    order: -1;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* ambient motion for the workshops illustration */
+.workshops-illustration .illus-person-a {
+  transform-origin: 122px 300px;
+  animation: illusFloat 4.4s ease-in-out infinite;
+}
+.workshops-illustration .illus-person-b {
+  transform-origin: 250px 314px;
+  animation: illusFloat 5s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.workshops-illustration .illus-person-c {
+  transform-origin: 374px 300px;
+  animation: illusFloat 4.7s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+.workshops-illustration .illus-idea {
+  transform-origin: 420px 220px;
+  animation: illusPulse 2.4s ease-in-out infinite;
+}
+.workshops-illustration .illus-clock {
+  transform-origin: 52px 200px;
+  animation: illusFloat 3.8s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+.workshop-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  transition: transform 0.3s var(--ease);
+}
+
+.workshop-row:hover {
+  transform: translateX(6px);
+}
+
+.workshop-row-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.workshop-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.workshop-row h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.workshop-format {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--clay-deep);
+  letter-spacing: 0.04em;
+}
+
+.workshop-row p {
+  margin: 0;
+  font-size: 15px;
+}
+
+@media (max-width: 800px) {
+  .workshop-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.workshops-cta {
+  background: var(--deep);
+  text-align: center;
+}
+
+.workshops-cta-inner h2 {
+  color: var(--white);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.workshops-cta-inner p {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 28px;
+}

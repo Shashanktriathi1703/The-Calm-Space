@@ -1,0 +1,174 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-glass);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 92px;
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  color: var(--heading);
+  padding: 6px 0;
+}
+
+.nav-brand .logo-wordmark {
+  font-size: 21px;
+}
+
+@media (max-width: 520px) {
+  .nav-brand .logo-wordmark {
+    display: none;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a.active {
+  color: var(--heading);
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--clay);
+}
+
+.nav-cta {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* Theme toggle — small persisted pill switch between the Calm and
+   Vibrant palettes, sits between the nav links and the CTA. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--sage);
+  transition: background 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+.theme-toggle-track.is-night {
+  background: var(--deep);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--clay-deep);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s var(--ease);
+}
+
+.theme-toggle-track.is-night .theme-toggle-thumb {
+  transform: translateX(18px);
+  color: var(--deep);
+}
+
+.theme-toggle-label {
+  min-width: 46px;
+  text-align: left;
+}
+
+@media (max-width: 860px) {
+  .nav-theme-toggle {
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--stone-soft);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 24px 24px;
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .nav-links.is-open {
+    display: flex;
+  }
+  .nav-links a {
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-cta {
+    margin-top: 16px;
+    width: 100%;
+  }
+}

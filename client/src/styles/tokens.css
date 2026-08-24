@@ -1,0 +1,77 @@
+:root {
+  /* Color — palette drawn from "The Calm Space" logo artwork, kept vivid
+     enough to feel warm and inviting (not a flat corporate teal site) while
+     staying rooted in the logo's actual teal/coral/gold family. */
+  --pine: #4d6b62;         /* muted sage-teal — secondary accents, borders */
+  --pine-deep: #24484c;    /* deep teal — headings, footer, dark surfaces (matches logo wordmark) */
+  --stone: #faf3e7;        /* warm ivory — page background */
+  --stone-soft: #ffffff;   /* white — card background */
+  --clay: #e0794f;         /* warm coral — primary CTA */
+  --clay-deep: #c15f38;    /* coral hover */
+  --sage: #cea86c;         /* warm gold — small accents, bullets (matches logo's ring) */
+  --ink: #22383a;          /* near-black teal — body text */
+  --ink-soft: #5b7370;     /* muted teal-grey — secondary text */
+  --line: rgba(36, 72, 76, 0.12);
+  --white: #ffffff;
+  --nav-glass: rgba(250, 243, 231, 0.92); /* translucent navbar backdrop, matches --stone */
+
+  /* --heading: headline/link text — sits on --stone/--stone-soft, so it
+     needs to flip light-on-dark in night mode. Kept separate from --deep
+     below because the two diverge once night mode exists. */
+  --heading: #24484c;
+  /* --deep: fixed dark-teal accent surface (footer, CTA bands, dark
+     badges). Intentionally does NOT change between day/night — these
+     elements are "always dark" brand moments, not page background, so
+     inverting them would make white text on them unreadable. */
+  --deep: #24484c;
+
+  /* Type */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Layout */
+  --max-width: 1180px;
+  --radius: 6px;
+  --radius-lg: 14px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* -----------------------------------------------------------------------
+   Night theme — a true dark mode, still built from the same teal / coral /
+   gold brand family so it reads as "the same site after dark" rather than
+   a generic inverted palette. Toggled by adding data-theme="night" to
+   <html> (see ThemeToggle.jsx). Every surface in the app is already built
+   on these custom properties, so this single block re-skins the entire
+   site with no other CSS edits.
+   ----------------------------------------------------------------------- */
+[data-theme="night"] {
+  --pine: #4fa393;          /* brighter teal — secondary accents, borders (needs to hold up on dark bg) */
+  --pine-deep: #eaf6f2;     /* near-white mint — headings (was dark-on-light, now light-on-dark) */
+  --stone: #0e2224;         /* deep teal-charcoal — page background */
+  --stone-soft: #16302f;    /* slightly lifted teal-charcoal — card background */
+  --clay: #ff7a4d;          /* coral, brightened for dark bg — primary CTA */
+  --clay-deep: #ff9468;     /* coral hover, lighter (hover = brighter on dark) */
+  --sage: #ffc857;          /* warm gold — accents, bullets, pops nicely on dark */
+  --ink: #eaf3f1;           /* near-white — body text */
+  --ink-soft: #9fbdb8;      /* muted mint-grey — secondary text */
+  --line: rgba(255, 255, 255, 0.12);
+  --nav-glass: rgba(14, 34, 36, 0.88);
+  --heading: #eaf6f2;
+  /* --deep intentionally NOT overridden here — stays the same fixed dark
+     teal in night mode so footer/CTA/badge text (always white-on-deep)
+     keeps working without touching those component styles. */
+}
+
+html,
+body,
+.nav,
+.footer,
+.btn,
+.card,
+.logo-badge {
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease),
+    border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}

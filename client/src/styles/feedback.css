@@ -1,0 +1,145 @@
+.feedback-section {
+  padding-top: 120px;
+  padding-bottom: 96px;
+  min-height: 70vh;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+}
+
+.feedback-sub {
+  font-size: 17px;
+  max-width: 440px;
+}
+
+.feedback-form {
+  background: var(--stone-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feedback-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  gap: 8px;
+}
+
+.feedback-form input,
+.feedback-form textarea,
+.feedback-form select {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--stone);
+  color: var(--ink);
+  font-weight: 400;
+  resize: vertical;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus,
+.feedback-form select:focus {
+  border-color: var(--clay);
+  outline: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  background: none;
+  border: none;
+  color: var(--line);
+  padding: 0;
+  line-height: 1;
+  cursor: default;
+}
+
+.star-rating-interactive .star {
+  cursor: pointer;
+  transition: transform 0.15s var(--ease);
+}
+
+.star-rating-interactive .star:hover {
+  transform: scale(1.15);
+}
+
+.star-filled {
+  color: var(--sage);
+}
+
+.feedback-consent {
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 10px !important;
+  font-weight: 400 !important;
+  font-size: 13.5px !important;
+  color: var(--ink-soft);
+}
+
+.feedback-consent input {
+  width: auto;
+  margin-top: 3px;
+}
+
+.feedback-hint {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: -8px 0 0;
+}
+
+.feedback-thanks {
+  max-width: 520px;
+  text-align: center;
+  background: var(--stone-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 56px 40px;
+  margin: 0 auto;
+}
+
+.feedback-thanks p {
+  margin-bottom: 28px;
+}
+
+.feedback-thanks .confirmation-check {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+@media (max-width: 800px) {
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
