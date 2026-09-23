@@ -65,9 +65,9 @@ export default function Contact() {
             <label>
               Email(`kanchan.s.pandey@gmail.com`)
               <input
-                required
+                // required
                 type="email"
-                value={form.email}
+                value={"kanchan.s.pandey@gmail.com"}
                 onChange={update("email")}
                 placeholder="kanchan.s.pandey@gmail.com"
               />
