@@ -2,7 +2,7 @@
 
 Full-stack site: React (Vite) frontend + Express/MongoDB backend, with online
 booking (calendar → details → Razorpay payment → confirmation), a feedback →
-testimonials pipeline, and automatic emails via Nodemailer (with the clinic
+testimonials pipeline, and automatic emails via Resend (with the clinic
 logo embedded in every email).
 
 ```
@@ -34,7 +34,9 @@ npm run dev                 # http://localhost:5173
 | Variable | What it's for |
 |---|---|
 | `MONGO_URI` | MongoDB connection string (local or Atlas — see below) |
-| `EMAIL_USER` / `EMAIL_APP_PASSWORD` | Gmail account + app password used to send emails |
+| `RESEND_API_KEY` | API key from https://resend.com/api-keys, used to send all emails |
+| `EMAIL_FROM` | Verified-domain send-from address, e.g. `The Calm Space <hello@yourdomain.com>` (falls back to Resend's sandbox address until you verify a domain) |
+| `EMAIL_USER` | Real inbox that "reply" on client emails routes to, and the default for `CLINIC_NOTIFY_EMAIL` |
 | `CLINIC_NOTIFY_EMAIL` | Where new-booking/contact/feedback alerts are sent (defaults to `EMAIL_USER`) |
 | `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` | Payment gateway keys |
 | `SESSION_PRICE_INR` | Price per session, in rupees |
@@ -62,15 +64,22 @@ npm run dev                 # http://localhost:5173
    backend to, you must add every variable from `server/.env.example` in
    that platform's **Environment Variables** settings panel.
 
-2. **Use a Gmail App Password, not the normal password.**
-   - Turn on 2-Step Verification: https://myaccount.google.com/security
-   - Create an App Password: https://myaccount.google.com/apppasswords
-     (App: "Mail", Device: "Other" → name it "The Calm Space Website")
-   - Use the 16-character password Google gives you as `EMAIL_APP_PASSWORD`.
-   - Gmail caps outgoing mail at ~500/day, plenty for a practice's booking,
-     contact, and feedback volume. If it ever grows past that, swap the
-     transporter in `server/utils/mailer.js` for a dedicated email API
-     (Resend, SendGrid, Postmark).
+2. **Get a Resend API key and verify a domain.**
+   - Sign up at https://resend.com (free tier: 3,000 emails/month, plenty
+     for a practice's booking, contact, and feedback volume).
+   - Create an API key at https://resend.com/api-keys → paste as
+     `RESEND_API_KEY`.
+   - Go to https://resend.com/domains → **Add Domain**, and add the DNS
+     records they give you at your domain registrar. Until this is
+     verified, Resend only delivers to the email address your Resend
+     account itself was signed up with — real clients won't receive
+     anything, so this step isn't optional for production.
+   - Once verified, set `EMAIL_FROM` to an address on that domain, e.g.
+     `The Calm Space <hello@yourdomain.com>`.
+   - We deliberately use Resend instead of Gmail SMTP: Gmail logins from
+     shared cloud-hosting IPs (Render, Heroku, etc.) routinely time out or
+     get throttled by Google with no useful error, which isn't fixable from
+     our side. Resend sends over plain HTTPS, which cloud hosts never block.
 
 3. **CORS must allow your live frontend's URL.** Set `CLIENT_URL` to your
    deployed frontend's exact URL, or the browser will block requests even
@@ -133,10 +142,10 @@ git push -u origin main
    - **Start Command**: `npm start`
    - **Instance Type**: Free is fine to start
 4. Under **Environment**, add every variable from `server/.env.example`
-   (`MONGO_URI`, `EMAIL_USER`, `EMAIL_APP_PASSWORD`, `CLINIC_NOTIFY_EMAIL`,
-   `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `SESSION_PRICE_INR`,
-   `ADMIN_SECRET`, and `CLIENT_URL` — you can leave `CLIENT_URL` blank for
-   now and fill it in after step 5c).
+   (`MONGO_URI`, `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_USER`,
+   `CLINIC_NOTIFY_EMAIL`, `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`,
+   `SESSION_PRICE_INR`, `ADMIN_SECRET`, and `CLIENT_URL` — you can leave
+   `CLIENT_URL` blank for now and fill it in after step 5c).
 5. Click **Create Web Service**. Render will build and deploy; note the URL
    it gives you, e.g. `https://calm-space-api.onrender.com`.
 6. Visit `https://calm-space-api.onrender.com/api/health` — you should see

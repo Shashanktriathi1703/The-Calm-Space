@@ -67,7 +67,7 @@ export default function Contact() {
               <input
                 required
                 type="email"
-                value={form.email}
+                value={"kanchan.s.pandey@gmail.com"}
                 onChange={update("email")}
                 placeholder="you@example.com"
               />
@@ -75,7 +75,7 @@ export default function Contact() {
           </div>
           <div className="form-row">
             <label>
-              Phone (optional)
+              Phone (WhatsApp)
               <input value={form.phone} onChange={update("phone")} placeholder="+91 ..." />
             </label>
             <label>
