@@ -89,6 +89,7 @@ export default function About() {
             <h2>Credentials &amp; Training</h2>
             <ul className="creds-list">
               <li>Doctorate in Psychology</li>
+              <li>POSH PFA &amp; POCSO Trainer</li>
               <li>Certified in Career Counselling &amp; Guidance</li>
               <li>Certificate Program in Advance Child Psychology</li>
               <li>Certificate Program in Graphology</li>
