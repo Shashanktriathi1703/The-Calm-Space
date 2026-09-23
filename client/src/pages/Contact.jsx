@@ -63,13 +63,13 @@ export default function Contact() {
               <input required value={form.name} onChange={update("name")} placeholder="Your name" />
             </label>
             <label>
-              Email
+              Email(`kanchan.s.pandey@gmail.com`)
               <input
                 required
                 type="email"
-                value={"kanchan.s.pandey@gmail.com"}
+                value={form.email}
                 onChange={update("email")}
-                placeholder="you@example.com"
+                placeholder="kanchan.s.pandey@gmail.com"
               />
             </label>
           </div>
