@@ -40,6 +40,9 @@ export default function Contact() {
               <a href="tel:+918123025658">+91-8123025658</a>
             </div>
             <div>
+              <a href="tel:+917021099319">+91-7021099319</a>
+            </div>
+            <div>
               <span className="contact-label">Email</span>
               <a href="mailto:kanchan.s.pandey@gmail.com">kanchan.s.pandey@gmail.com</a>
             </div>

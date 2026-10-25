@@ -25,6 +25,7 @@ export default function Footer() {
           <h4>Get in Touch</h4>
           <a href="mailto:kanchan.s.pandey@gmail.com">kanchan.s.pandey@gmail.com</a>
           <a href="tel:+918123025658">+91-8123025658</a>
+          <a href="tel:+917021099319">+91-7021099319</a>
           <a href="https://wa.me/918123025658" target="_blank" rel="noreferrer">
             WhatsApp
           </a>
